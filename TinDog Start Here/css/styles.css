@@ -1,0 +1,167 @@
+#title{
+    text-align: left;
+}
+
+body, h1, h2, h3{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+h1{
+    font-size: 3.5rem;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+h2{
+    font-weight: bold;
+    font-size: 3rem;
+    line-height: 1.5;
+}
+
+h3{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.big-heading{
+    text-align: left;
+}
+
+.container-fluid{
+    padding: 3% 10%
+}
+
+#press, #pricing, #features, #testimonials, #cta, #footer{
+    text-align: center;
+}
+
+/* nav bar */
+
+.navbar{
+    padding-bottom: 50px
+}
+
+.navbar-brand{
+    font-family: 'Ubuntu';
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.nav-item{
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+/*download buttons */
+.download-button{
+    margin: 30px 10px 10px 0px;
+}
+
+/* title image */
+.title-image{
+    width:20%;
+    transform: rotate(25deg);
+    position: absolute;
+    right: 18%;
+    z-index: 0;
+}
+
+/* font awesome */
+.fa-heart, .fa-circle-check,.fa-bullseye {
+    color: #ef8172;
+    display: flex;
+    padding-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+i:hover{
+    color: #ff4c68;
+}
+
+/* color sections */
+.colored-section{
+    background-color: #ff4c68;
+    color: white;
+}
+
+.white-section{
+    background-color: #fff;
+}
+
+.peachy-section{
+    background-color: #ef8172;
+    color: #fff;
+}
+
+/* features */
+#features{
+    padding: 100px 30px 15px;
+    position: relative;
+}
+
+.feature-text{
+    color: #8f8f8f;
+}
+
+/* testimonials */
+
+.testimonial-image{
+    padding: 10px 10px;
+    width: 20%;
+    border-radius: 100%;
+}
+
+.carousel-item{
+    padding: 30px 60px 50px;
+}
+
+#press{
+    padding-bottom: 20px;
+}
+
+.press_logo{
+    width: 15%;
+    margin: 20px 20px 50px;
+}
+
+#pricing{
+    padding: 80px;
+}
+
+.pricing-column{
+    padding: 10px;
+}
+
+/* cta section */
+#cta{
+    padding-bottom: 30px;
+    font: 'Montserrat'
+}
+.cta-text{
+    padding-top: 20px;
+}
+
+/* footer section */
+
+.footer-logo{
+    padding: 20px;
+}
+
+/* media queries */
+
+@media (max-width: 1028px){
+    #title, .big-heading{
+        text-align: center;
+    }
+   
+    .title-image{
+        position: static;
+        width: 60%;
+        padding-top: 50px;
+        transform: rotate(0deg);
+    }
+
+}
+
