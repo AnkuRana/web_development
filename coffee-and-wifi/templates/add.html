@@ -1,0 +1,64 @@
+{% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block styles %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+
+{% block title %}Add A New Cafe{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+
+      <h1>Add a new cafe into the database</h1>
+      {{ wtf.quick_form(form)}}
+      <!-- {{ wtf.quick_form(form, method="POST", action="{{ url_for('add_cafe') }}", button_map={"submit": "danger"} ) }} -->
+      <!-- <form method="POST" action="{{ url_for('add_cafe') }}"><br>
+        {{ form.crsf_token }}
+
+        <p>{{ form.cafe.label }}<br> {{ form.cafe(size=50) }}</p>
+        {% for err in form.cafe.errors %}
+        <span style="color: red">{{ err }}</span>
+        {% endfor%}
+
+        <p>{{ form.location.label }}<br> {{ form.location(size=50) }}</p>
+        {% for err in form.location.errors %}
+        <span style="color: red">{{ err }}</span>
+        {% endfor%}
+
+        <p>{{ form.opening.label }}<br> {{ form.opening(size=50) }}</p>
+        {% for err in form.opening.errors %}
+        <span style="color: red">{{ err }}</span>
+        {% endfor%}
+
+        <p>{{ form.closing.label }}<br> {{ form.closing(size=50) }}</p>
+        {% for err in form.closing.errors %}
+        <span style="color: red">{{ err }}</span>
+        {% endfor%}
+
+        <p>{{ form.coffee.label }}<br> {{ form.coffee(size=50) }}</p>
+        {% for err in form.coffee.errors %}
+        <span style="color: red">{{ err }}</span>
+        {% endfor%}
+
+        <p>{{ form.wifi.label }}<br> {{ form.wifi(size=50) }}</p>
+        {% for err in form.wifi.errors %}
+        <span style="color: red">{{ err }}</span>
+        {% endfor%}
+
+        <p>{{ form.power.label }}<br> {{ form.power(size=50) }}</p>
+        {% for err in form.power.errors %}
+        <span style="color: red">{{ err }}</span>
+        {% endfor%}
+
+        {{ form.submit }} -->
+	      <br>
+        <p class="space-above"><a href="{{ url_for('cafes')}}">See all cafes</a></p>
+        <br>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
