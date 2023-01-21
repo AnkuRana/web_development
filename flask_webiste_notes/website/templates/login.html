@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div class="container mt-3">
+    <h2 style="padding-bottom: 1rem;">Sign-in</h2>
+    <form method="POST" action="{{ url_for('auth.login') }}">
+        {{ form.csrf_token }}
+        {{ form.email.label(class="form-label mt-1") }} {{ form.email(size=150, class="form-control form-control-lg border border-2 mb-1")}}
+        {% for err in form.email.errors %}
+        <span style="color: red">{{ err }}</span><br>
+        {% endfor %}
+
+        {{ form.password.label(class="form-label mt-1") }} {{ form.password(size=150, class="form-control form-control-lg border border-2 mb-1")}}
+        {% for err in form.password.errors %}
+        <span style="color: red">{{ err }}</span><br>
+        {% endfor %}
+
+        {{ form.submit(class="btn btn-dark btn-lg my-4") }} 
+    </form>
+    
+</div>
+{% endblock %}

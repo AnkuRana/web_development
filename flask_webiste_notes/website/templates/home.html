@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="container mt-3">
+    <h2 class="d-flex justify-content-center">{{ user.firstname + user.lastname }} Notes...</h2>
+    {% for note in user.notes %}
+        <!-- <ul class="list-group list-group-horizontal list-group-flush id="notes"">
+            <li class="list-group-item list-group-item-action"> <p>{{ note.note_data }} </p></li>
+            <li class="list-group-item list-group-item-action"><a class="btn btn-dark" role="button" aria-disabled="true">Delete</a></li>
+        </ul> -->
+        <div class="container">
+            <div class="row">
+                <div class="col-9"><p>{{ note.note_data }} </p></div>
+                <div class="col-3" style="text-align:right;">
+                    <a href="{{ url_for('views.delete_note', note_id=note.id) }}" aria-disabled="true"><i class="fa-solid fa-trash-can"></i></a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <form method="POST" action="{{ url_for('views.home') }}">
+        {{ form.csrf_token }}
+        {{ form.note.label(class="form-label mt-1") }} {{ form.note(size=10000, class="form-control form-control-lg border border-2 mb-1") }}
+        {% for err in form.note.errors %}
+            <span style="color: red">{{ err }}</span><br>
+        {% endfor %}
+        <div class="d-flex justify-content-center">
+            {{ form.submit(class="btn btn-dark btn-lg my-4") }}
+        </div>
+    </form>
+    
+</div>
+{% endblock %}

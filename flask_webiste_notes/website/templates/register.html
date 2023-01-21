@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}SignUp{% endblock %}
+{% block content%}
+<div class="container mt-3">
+    <h1 style="padding-bottom: 1rem;">Sign-up</h1>
+    <form method="POST" action="{{ url_for('auth.register') }}">
+        {{ form.csrf_token }}
+        {{ form.email.label(class="form-label mt-1") }} {{ form.email(size=150, class="form-control form-control-lg border border-2 mb-1")}}
+        {% for err in form.email.errors %}
+        <span style="color: red">{{ err }}</span><br>
+        {% endfor %}
+        
+        {{ form.first_name.label(class="form-label mt-1") }} {{ form.first_name(size=150, class="form-control form-control-lg border border-2 mb-1")}}
+        {% for err in form.first_name.errors %}
+        <span style="color: red">{{ err }}</span><br>
+        {% endfor %}
+        
+        {{ form.last_name.label(class="form-label mt-1") }} {{ form.last_name(size=150, class="form-control form-control-lg border border-2 mb-1")}}
+        {% for err in form.last_name.errors %}
+        <span style="color: red">{{ err }}</span><br>
+        {% endfor %}
+        
+        {{ form.password.label(class="form-label mt-1") }} {{ form.password(size=150, class="form-control form-control-lg border border-2 mb-1")}}
+        {% for err in form.password.errors %}
+        <span style="color: red">{{ err }}</span><br>
+        {% endfor %}
+        {{ form.password_cnf.label(class="form-label mt-1") }} {{ form.password_cnf(size=150, class="form-control form-control-lg border border-2 mb-1")}}
+        {% for err in form.password_cnf.errors %}
+        <span style="color: red">{{ err }}</span><br>
+        {% endfor %}
+        
+        {{ form.submit(class="btn btn-dark btn-lg my-4") }}
+    </form>
+    
+</div>
+{% endblock %}
