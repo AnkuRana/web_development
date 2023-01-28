@@ -65,7 +65,7 @@ def register():
             login_user(new_user)
             return redirect(url_for("views.home"))
  
-    return render_template("register.html",form=form, user=current_user)
+    return render_template("register.html",form=form)
 
 @auth.route("/logout", methods=["GET", "POST"])
 @login_required

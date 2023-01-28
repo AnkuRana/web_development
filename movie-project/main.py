@@ -25,7 +25,7 @@ class Movies(db.Model):
     year = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(1000))
     rating = db.Column(db.Float)
-    ranking = db.Column(db.Integer, unique=True)
+    ranking = db.Column(db.Integer)
     review= db.Column(db.String(100))
     img_url= db.Column(db.String(100), nullable=False)
     plot_summary = db.Column(db.String(2000))
@@ -54,6 +54,7 @@ class Edit_Form(FlaskForm):
 if not check_db():
     with app.app_context():
         db.create_all()
+
 
 
 @app.route("/")

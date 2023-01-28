@@ -1,7 +1,7 @@
 import requests
 
 headers = {
-	"X-RapidAPI-Key": "get_your_own_key",
+	"X-RapidAPI-Key": "e30ccf26efmsha67c2236ee9f285p1efc9ajsn3be70b91b431",
 	"X-RapidAPI-Host": "online-movie-database.p.rapidapi.com"
 }
 
@@ -37,7 +37,8 @@ def get_movie_details(movie_id, headers):
         plotOutline = movie_details["plotOutline"]["text"]
     if "plotSummary" in movie_details.keys():
         plotSummary = movie_details["plotSummary"]["text"]
-        author = movie_details["plotSummary"]["author"]
+        if "author" in movie_details["plotSummary"].keys():
+            author = movie_details["plotSummary"]["author"]
 
     movie_req_info = {
         "image": movie_details["title"]["image"]["url"],
