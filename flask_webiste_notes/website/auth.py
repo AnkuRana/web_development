@@ -6,7 +6,7 @@ from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from . import db
-from .db_models import User, Notes
+from .db_models import User
 
 class Signup_form(FlaskForm):
     first_name = StringField("First Name",validators=[DataRequired()])
