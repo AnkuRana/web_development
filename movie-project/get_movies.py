@@ -1,7 +1,7 @@
 import requests
 
 headers = {
-	"X-RapidAPI-Key": "e30ccf26efmsha67c2236ee9f285p1efc9ajsn3be70b91b431",
+	"X-RapidAPI-Key": "xxxxxxxxx",
 	"X-RapidAPI-Host": "online-movie-database.p.rapidapi.com"
 }
 
