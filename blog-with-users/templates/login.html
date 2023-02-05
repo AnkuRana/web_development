@@ -1,0 +1,70 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block content %}
+{% include "header.html" %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('https://images.unsplash.com/photo-1484100356142-db6ab6244067?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Log In</h1>
+            <span class="subheading">Welcome Back!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                  {% for category, message in messages %}
+                      {% if category == "success" %}
+                          <div class="alert alert-success alert-dismissible fade show" role="alert">
+                              <strong>{{ message }}</strong>
+                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
+                      {% elif category == "info" %}
+                          <div class="alert alert-info alert-dismissible fade show" role="alert">
+                              <strong>{{ message }}</strong>
+                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
+                      {% else %}
+                          <div class="alert alert-error alert-dismissible fade show" role="alert">
+                              <strong>{{ message }}</strong>
+                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>  
+                      {% endif %}
+                  {% endfor%}
+            {% endif%}
+        {% endwith %}
+    <div class="row">
+
+      <div class="col-lg-8 col-md-10 mx-auto content">
+        <form method="POST" action=" {{ url_for('login') }}">
+          {{ form.csrf_token() }}
+
+          {{ form.email.label(class="form-label mt-2 mb-1") }} {{ form.email(size=150, class="form-control form-control-lg border border-2 mb-2") }} 
+          {% for err in form.email.errors %}
+            <span style="color: red">{{ err }}</span><br>
+          {% endfor %}
+
+          {{ form.password.label(class="form-label mt-1 mb-1") }} {{ form.password(class="form-control form-control-lg border border-2 mb-2") }}
+          {% for err in form.password.errors %}
+            <span style="color: red">{{ err }}</span><br>
+          {% endfor %}
+
+          <br>
+          {{ form.submit(class="btn btn-outline-dark") }}
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+{% include "footer.html" %}
+{% endblock %}
