@@ -1,12 +1,14 @@
 from flask import Flask
 from config import DevConfig
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from sqlalchemy.sql import func
 
 
 app = Flask(__name__)
 app.config.from_object(DevConfig)
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 
 class User(db.Model):
