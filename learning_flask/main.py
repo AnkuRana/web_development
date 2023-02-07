@@ -2,6 +2,7 @@ from flask import Flask
 from config import DevConfig
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from sqlalchemy import select
 from sqlalchemy.sql import func
 
 
@@ -52,12 +53,18 @@ class Tag(db.Model):
 class Comment(db.Model):
     id = db.Column(db.Integer , primary_key=True)
     content = db.Column(db.Text())
-    comment_by = db.Column(db.String(250), nullable=False)
+    comment_by = db.Column(db.String(250), nullable=False, default="anonymous")
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     post_id = db.Column(db.Integer, db.ForeignKey("blogpost.id"))
 
     def __repr__(self) -> str:
         return f"Comment- id:{self.id} | title:{self.content} | post_id:{self.post_id}."
+    
+def sidebar_data():
+    recent = db.session.execute(select(Blogpost).order_by(Blogpost.publish_date.desc()).limit(5).all())
+    # recent = Post.query.order_by(Post.publish_date.desc()).limit(5).all()
+    top_tags = db.session.execute(select(Tag, func.count(blogpost_tag.c.post_id).label('tag_count'))).join(blogpost_tag).group_by(Tag).order_by('tag_count DESC').limit(5).all()
+    return recent, top_tags
 
 
 @app.route('/')
