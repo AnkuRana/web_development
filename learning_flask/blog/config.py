@@ -1,5 +1,5 @@
 class Config(object):
-    pass
+    POSTS_PER_PAGE = 5
 
 class DevConfig(Config):
     DEBUG = True
