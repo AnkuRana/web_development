@@ -36,7 +36,7 @@ class Person(UserMixin, db.Model):
      id = db.Column(db.Integer, primary_key=True)
      email = db.Column(db.String(250), nullable=False, unique=True)
      password = db.Column(db.String(250), nullable=False)
-     my_blogposts = db.relationship("Post")
+     my_blogposts = db.relationship("Post", backref="person")
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -139,7 +139,8 @@ def add_new_post():
             body=form.body.data,
             img_url=form.img_url.data,
             author=current_user.email.split(".")[0],
-            date=date.today().strftime("%B %d, %Y")
+            date=date.today().strftime("%B %d, %Y"),
+            user_id=current_user.id
         )
         db.session.add(new_post)
         db.session.commit()
@@ -147,7 +148,7 @@ def add_new_post():
     return render_template("make-post.html", form=form, user=current_user)
 
 
-@app.route("/edit-post/<int:post_id>")
+@app.route("/edit-post/<int:post_id>", methods=["POST","GET"])
 @login_required
 @adminonly
 def edit_post(post_id):
@@ -163,7 +164,6 @@ def edit_post(post_id):
         post.title = edit_form.title.data
         post.subtitle = edit_form.subtitle.data
         post.img_url = edit_form.img_url.data
-        post.author = edit_form.author.data
         post.body = edit_form.body.data
         db.session.commit()
         return redirect(url_for("show_post", post_id=post.id))
